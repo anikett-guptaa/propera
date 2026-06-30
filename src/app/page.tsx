@@ -1,29 +1,33 @@
-"use client";
+import { Navbar } from "@/components/landing/navbar";
+import { Hero } from "@/components/landing/hero";
+import { TrustedBy } from "@/components/landing/trusted-by";
+import { Features } from "@/components/landing/features";
+import { DashboardPreview } from "@/components/landing/dashboard-preview";
+import { Workflow } from "@/components/landing/workflow";
+import { AnalyticsPreview } from "@/components/landing/analytics-preview";
+import { Testimonials } from "@/components/landing/testimonials";
+import { Pricing } from "@/components/landing/pricing";
+import { Faq } from "@/components/landing/faq";
+import { Cta } from "@/components/landing/cta";
+import { Footer } from "@/components/landing/footer";
+import { BackgroundGrid } from "@/components/landing/background-grid";
 
-import { authClient } from "@/lib/auth-client";
-
-export default function Home() {
+export default function LandingPage() {
   return (
-    <main className="min-h-screen flex items-center justify-center">
-      <button
-        onClick={async () => {
-          const res = await authClient.signUp.email({
-  name: "Aniket",
-  email: "aniket@example.com",
-  password: "password123",
-});
-
-console.log("Response:", res);
-console.log("Error:", res.error);
-console.log("Error message:", res.error?.message);
-console.log("Error code:", res.error?.code);
-
-          console.log(res);
-        }}
-        className="rounded bg-black px-4 py-2 text-white"
-      >
-        Test Signup
-      </button>
+    <main className="relative min-h-screen bg-[#fdfcff]">
+      <BackgroundGrid />
+      <Navbar />
+      <Hero />
+      <TrustedBy />
+      <Features />
+      <DashboardPreview />
+      <Workflow />
+      <AnalyticsPreview />
+      <Testimonials />
+      <Pricing />
+      <Faq />
+      <Cta />
+      <Footer />
     </main>
   );
 }
