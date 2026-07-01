@@ -13,15 +13,8 @@ export function Cta() {
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         className="relative mx-auto max-w-4xl overflow-hidden rounded-3xl bg-gradient-to-br from-violet-600 via-violet-700 to-violet-900 px-8 py-16 text-center sm:px-16"
       >
-        {/* Background orbs */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-white/10 blur-3xl"
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -bottom-16 -right-16 h-56 w-56 rounded-full bg-violet-400/30 blur-3xl"
-        />
+        <div aria-hidden className="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+        <div aria-hidden className="pointer-events-none absolute -bottom-16 -right-16 h-56 w-56 rounded-full bg-violet-400/30 blur-3xl" />
 
         <div className="relative">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5">

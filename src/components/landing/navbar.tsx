@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
+import Image from "next/image";
 
 interface NavLink {
   label: string;
@@ -16,24 +17,6 @@ const navLinks: NavLink[] = [
   { label: "Pricing", href: "#pricing" },
   { label: "FAQ", href: "#faq" },
 ];
-
-function PropraMark({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 32 32" fill="none" className={className} aria-hidden="true">
-      <defs>
-        <linearGradient id="mark-grad" x1="4" y1="2" x2="28" y2="30" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#C4B2FD" />
-          <stop offset="0.5" stopColor="#7C5CFC" />
-          <stop offset="1" stopColor="#3D2A8F" />
-        </linearGradient>
-      </defs>
-      <path
-        d="M9 5C9 3.34 10.34 2 12 2H17C22.52 2 27 6.48 27 12C27 16.5 24 19.5 21 21L13 28V13L21 19.5C23 18 24.5 15.5 24.5 12C24.5 8.13 21.37 5 17.5 5H12V28H9V5Z"
-        fill="url(#mark-grad)"
-      />
-    </svg>
-  );
-}
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -59,7 +42,13 @@ export function Navbar() {
         }`}
       >
         <a href="#" className="flex items-center gap-2">
-          <PropraMark className="h-7 w-7" />
+          <Image
+            src="/icon.png"
+            alt="Propera"
+            width={28}
+            height={28}
+            className="h-7 w-7 object-contain"
+          />
           <span className="text-[15px] font-semibold tracking-tight text-ink-950 dark:text-white">
             Propera
           </span>

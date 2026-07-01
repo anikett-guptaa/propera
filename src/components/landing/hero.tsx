@@ -27,13 +27,13 @@ export function Hero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-6 inline-flex items-center gap-2 rounded-full border border-violet-300/40 bg-violet-50 px-3.5 py-1.5"
+          className="mb-6 inline-flex items-center gap-2 rounded-full border border-violet-300/40 bg-violet-50 px-3.5 py-1.5 dark:border-violet-400/20 dark:bg-violet-500/10"
         >
           <span className="relative flex h-1.5 w-1.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-violet-500 opacity-75" />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-violet-500" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-violet-500 opacity-75 dark:bg-violet-400" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-violet-500 dark:bg-violet-400" />
           </span>
-          <span className="font-mono text-[11px] tracking-wide text-violet-700">
+          <span className="font-mono text-[11px] tracking-wide text-violet-700 dark:text-violet-300">
             Now generating bills automatically every month
           </span>
         </motion.div>
@@ -42,13 +42,13 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-balance text-[2.75rem] font-semibold leading-[1.05] tracking-tight text-ink-950 sm:text-6xl md:text-[5rem]"
+          className="text-balance text-[2.75rem] font-semibold leading-[1.05] tracking-tight text-ink-950 dark:text-white sm:text-6xl md:text-[5rem]"
         >
           Property management
           <br />
           that finally feels{" "}
           <span className="relative inline-block">
-            <span className="bg-linear-to-r from-violet-700 via-violet-500 to-violet-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-violet-700 via-violet-500 to-violet-600 bg-clip-text text-transparent dark:from-violet-300 dark:via-violet-400 dark:to-violet-200">
               effortless.
             </span>
           </span>
@@ -58,7 +58,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto mt-6 max-w-xl text-balance text-base text-zinc-500 sm:text-lg"
+          className="mx-auto mt-6 max-w-xl text-balance text-base text-zinc-500 dark:text-zinc-400 sm:text-lg"
         >
           Rooms, tenants, rent, and reporting, all in one calm workspace. Built
           for owners who are done chasing spreadsheets and WhatsApp reminders.
@@ -72,14 +72,14 @@ export function Hero() {
         >
           <a
             href="#"
-            className="group flex w-full items-center justify-center gap-2 rounded-xl bg-ink-950 px-6 py-3 text-sm font-medium text-white transition-all hover:bg-violet-700 sm:w-auto"
+            className="group flex w-full items-center justify-center gap-2 rounded-xl bg-ink-950 px-6 py-3 text-sm font-medium text-white transition-all hover:bg-violet-700 dark:bg-white dark:text-ink-950 dark:hover:bg-violet-100 sm:w-auto"
           >
             Start free trial
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </a>
           <a
             href="#"
-            className="flex w-full items-center justify-center gap-2 rounded-xl border border-black/8 bg-white px-6 py-3 text-sm font-medium text-zinc-700 shadow-sm transition-colors hover:bg-zinc-50 sm:w-auto"
+            className="flex w-full items-center justify-center gap-2 rounded-xl border border-black/[0.08] bg-white px-6 py-3 text-sm font-medium text-zinc-700 shadow-sm transition-colors hover:bg-zinc-50 dark:border-white/10 dark:bg-white/5 dark:text-zinc-200 dark:hover:bg-white/10 sm:w-auto"
           >
             <PlayCircle className="h-4 w-4" />
             Watch product tour
@@ -94,10 +94,10 @@ export function Hero() {
         >
           {stats.map((s) => (
             <div key={s.label} className="text-center">
-              <p className="font-mono text-xl font-semibold text-ink-950">
+              <p className="font-mono text-xl font-semibold text-ink-950 dark:text-white">
                 {s.value}
               </p>
-              <p className="mt-0.5 text-xs text-zinc-500">{s.label}</p>
+              <p className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">{s.label}</p>
             </div>
           ))}
         </motion.div>
@@ -105,7 +105,6 @@ export function Hero() {
 
       <div className="relative mt-20">
         <HeroAnimation />
-
         <FloatingCard
           icon={Wallet}
           label="Rent collected today"

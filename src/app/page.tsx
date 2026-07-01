@@ -14,7 +14,7 @@ import { BackgroundGrid } from "@/components/landing/background-grid";
 
 export default function LandingPage() {
   return (
-    <main className="relative min-h-screen bg-[#fdfcff]">
+    <main className="relative min-h-screen bg-[#fdfcff] dark:bg-ink-950">
       <BackgroundGrid />
       <Navbar />
       <Hero />

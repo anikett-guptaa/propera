@@ -5,26 +5,10 @@ import { Building2, DoorOpen, UserPlus, Wallet, ArrowRight } from "lucide-react"
 import { SectionHeading } from "./section-heading";
 
 const steps = [
-  {
-    icon: Building2,
-    title: "Add a property",
-    description: "Name it, set the address, pick how many floors it has.",
-  },
-  {
-    icon: DoorOpen,
-    title: "Rooms generate themselves",
-    description: "Tell us floors and rooms per floor. We number them instantly.",
-  },
-  {
-    icon: UserPlus,
-    title: "Move tenants in",
-    description: "Assign a room, set the rent, upload an ID. Done in a minute.",
-  },
-  {
-    icon: Wallet,
-    title: "Billing runs on its own",
-    description: "Every 1st of the month, bills go out. You just watch it happen.",
-  },
+  { icon: Building2, title: "Add a property", description: "Name it, set the address, pick how many floors it has." },
+  { icon: DoorOpen, title: "Rooms generate themselves", description: "Tell us floors and rooms per floor. We number them instantly." },
+  { icon: UserPlus, title: "Move tenants in", description: "Assign a room, set the rent, upload an ID. Done in a minute." },
+  { icon: Wallet, title: "Billing runs on its own", description: "Every 1st of the month, bills go out. You just watch it happen." },
 ];
 
 export function Workflow() {
@@ -37,7 +21,7 @@ export function Workflow() {
       />
 
       <div className="mx-auto mt-16 max-w-5xl">
-        {/* Desktop: horizontal connected timeline */}
+        {/* Desktop */}
         <div className="hidden lg:grid lg:grid-cols-4 lg:gap-0">
           {steps.map((step, i) => (
             <motion.div
@@ -49,22 +33,18 @@ export function Workflow() {
               className="relative flex flex-col items-center px-4 text-center"
             >
               {i < steps.length - 1 && (
-                <div className="absolute left-1/2 top-7 h-px w-full translate-x-1/2 bg-gradient-to-r from-violet-200 to-violet-100" />
+                <div className="absolute left-1/2 top-7 h-px w-full translate-x-1/12 bg-gradient-to-r from-violet-200 to-violet-100 dark:from-violet-800 dark:to-violet-900" />
               )}
-              <div className="relative z-10 mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-violet-200 bg-white shadow-[0_8px_24px_-8px_rgba(124,92,252,0.35)]">
-                <step.icon className="h-6 w-6 text-violet-700" />
+              <div className="relative z-10 mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-violet-200 bg-white shadow-[0_8px_24px_-8px_rgba(124,92,252,0.35)] dark:border-violet-700/50 dark:bg-ink-900">
+                <step.icon className="h-6 w-6 text-violet-700 dark:text-violet-300" />
               </div>
-              <h3 className="text-[15px] font-semibold text-ink-950">
-                {step.title}
-              </h3>
-              <p className="mt-2 max-w-[220px] text-sm leading-relaxed text-zinc-500">
-                {step.description}
-              </p>
+              <h3 className="text-[15px] font-semibold text-ink-950 dark:text-white">{step.title}</h3>
+              <p className="mt-2 max-w-[220px] text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">{step.description}</p>
             </motion.div>
           ))}
         </div>
 
-        {/* Mobile / tablet: vertical timeline */}
+        {/* Mobile */}
         <div className="flex flex-col gap-6 lg:hidden">
           {steps.map((step, i) => (
             <motion.div
@@ -76,20 +56,16 @@ export function Workflow() {
               className="flex gap-4"
             >
               <div className="flex flex-col items-center">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-violet-200 bg-white shadow-sm">
-                  <step.icon className="h-5 w-5 text-violet-700" />
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-violet-200 bg-white shadow-sm dark:border-violet-700/50 dark:bg-ink-900">
+                  <step.icon className="h-5 w-5 text-violet-700 dark:text-violet-300" />
                 </div>
                 {i < steps.length - 1 && (
-                  <div className="my-1 h-full w-px flex-1 bg-violet-100" />
+                  <div className="my-1 h-full w-px flex-1 bg-violet-100 dark:bg-violet-900" />
                 )}
               </div>
               <div className="pb-2">
-                <h3 className="text-[15px] font-semibold text-ink-950">
-                  {step.title}
-                </h3>
-                <p className="mt-1 text-sm leading-relaxed text-zinc-500">
-                  {step.description}
-                </p>
+                <h3 className="text-[15px] font-semibold text-ink-950 dark:text-white">{step.title}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">{step.description}</p>
               </div>
             </motion.div>
           ))}
@@ -104,7 +80,7 @@ export function Workflow() {
         >
           <a
             href="#"
-            className="group inline-flex items-center gap-1.5 text-sm font-medium text-violet-700 hover:text-violet-800"
+            className="group inline-flex items-center gap-1.5 text-sm font-medium text-violet-700 hover:text-violet-800 dark:text-violet-400 dark:hover:text-violet-300"
           >
             See the full workflow in the product tour
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />

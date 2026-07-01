@@ -13,48 +13,42 @@ interface Testimonial {
 
 const testimonials: Testimonial[] = [
   {
-    quote:
-      "Before Propera, I spent three days every month collecting rent and sending reminders manually. Now it all happens while I sleep on the 1st. I genuinely cannot go back.",
+    quote: "Before Propera, I spent three days every month collecting rent and sending reminders manually. Now it all happens while I sleep on the 1st.",
     name: "Rajesh Gupta",
     role: "Hostel Owner, Pune",
     initials: "RG",
     gradient: "from-violet-400 to-violet-600",
   },
   {
-    quote:
-      "The WhatsApp billing alone was worth switching. Tenants actually pay faster because they receive a proper PDF instead of a casual message asking for money.",
+    quote: "The WhatsApp billing alone was worth switching. Tenants actually pay faster because they receive a proper PDF instead of a casual message asking for money.",
     name: "Meera Sharma",
     role: "PG Owner, Bangalore",
     initials: "MS",
     gradient: "from-violet-500 to-indigo-600",
   },
   {
-    quote:
-      "Managing four properties with 120 tenants used to mean four different spreadsheets. Propera gave me one place and I actually understand my finances now.",
+    quote: "Managing four properties with 120 tenants used to mean four different spreadsheets. Propera gave me one place and I actually understand my finances now.",
     name: "Vikram Patel",
     role: "Apartment Manager, Mumbai",
     initials: "VP",
     gradient: "from-violet-600 to-purple-700",
   },
   {
-    quote:
-      "The defaulter list with auto-reminders changed everything. I do not have to feel awkward calling tenants anymore. The system does it professionally for me.",
+    quote: "The defaulter list with auto-reminders changed everything. I do not have to feel awkward calling tenants anymore. The system does it professionally for me.",
     name: "Sunita Nair",
-    role: "Residential Building Owner, Chennai",
+    role: "Building Owner, Chennai",
     initials: "SN",
     gradient: "from-indigo-400 to-violet-500",
   },
   {
-    quote:
-      "Setup took under 30 minutes. I added my three properties, created all the rooms, and the first batch of bills went out automatically the very next 1st.",
+    quote: "Setup took under 30 minutes. I added my three properties, created all the rooms, and the first batch of bills went out automatically the very next 1st.",
     name: "Arjun Mehta",
     role: "PG Owner, Hyderabad",
     initials: "AM",
     gradient: "from-violet-400 to-fuchsia-500",
   },
   {
-    quote:
-      "The occupancy and revenue charts finally let me see which property is actually profitable. I had a unit sitting underpriced for two years and had no idea.",
+    quote: "The occupancy and revenue charts finally let me see which property is actually profitable. I had a unit sitting underpriced for two years and had no idea.",
     name: "Priya Iyer",
     role: "Multi-property Owner, Kochi",
     initials: "PI",
@@ -80,10 +74,7 @@ export function Testimonials() {
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 50% at 50% 50%, rgba(124,92,252,0.06) 0%, transparent 70%)",
-        }}
+        style={{ background: "radial-gradient(ellipse 80% 50% at 50% 50%, rgba(124,92,252,0.06) 0%, transparent 70%)" }}
       />
 
       <SectionHeading
@@ -100,21 +91,19 @@ export function Testimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-4 break-inside-avoid rounded-2xl border border-black/6 bg-white p-6 shadow-sm"
+            className="mb-4 break-inside-avoid rounded-2xl border border-black/[0.06] bg-white p-6 shadow-sm dark:border-white/[0.08] dark:bg-ink-900"
           >
             <StarRow />
-            <p className="mt-4 text-sm leading-relaxed text-zinc-600">
+            <p className="mt-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
               {t.quote}
             </p>
             <div className="mt-5 flex items-center gap-3">
-              <div
-                className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-linear-to-br ${t.gradient} text-xs font-semibold text-white`}
-              >
+              <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${t.gradient} text-xs font-semibold text-white`}>
                 {t.initials}
               </div>
               <div>
-                <p className="text-sm font-semibold text-ink-950">{t.name}</p>
-                <p className="text-xs text-zinc-400">{t.role}</p>
+                <p className="text-sm font-semibold text-ink-950 dark:text-white">{t.name}</p>
+                <p className="text-xs text-zinc-400 dark:text-zinc-500">{t.role}</p>
               </div>
             </div>
           </motion.div>

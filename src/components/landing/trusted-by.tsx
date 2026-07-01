@@ -21,7 +21,7 @@ export function TrustedBy() {
         transition={{ duration: 0.6 }}
         className="mx-auto max-w-4xl"
       >
-        <p className="mb-8 text-center font-mono text-xs uppercase tracking-[0.18em] text-zinc-400">
+        <p className="mb-8 text-center font-mono text-xs uppercase tracking-[0.18em] text-zinc-400 dark:text-zinc-600">
           Trusted by property teams across India
         </p>
         <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
@@ -33,7 +33,7 @@ export function TrustedBy() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.06, duration: 0.5 }}
               whileHover={{ opacity: 1 }}
-              className="text-sm font-medium tracking-tight text-zinc-500 transition-opacity"
+              className="text-sm font-medium tracking-tight text-zinc-500 transition-opacity dark:text-zinc-400"
             >
               {name}
             </motion.span>
