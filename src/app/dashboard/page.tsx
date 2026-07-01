@@ -12,6 +12,9 @@ import { StatCard } from "@/components/dashboard/stat-card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
+import { redirect } from "next/navigation";
+import { getSession } from "@/lib/session";
+
 // Demo for checking the dashboard layout and components.
 
 const stats = [
@@ -78,11 +81,41 @@ const stats = [
 ];
 
 const recentPayments = [
-  { name: "Rohit Sharma", room: "R-201", amount: "₹8,500", status: "paid", time: "2 min ago" },
-  { name: "Priya Mehta", room: "R-105", amount: "₹7,200", status: "paid", time: "1 hr ago" },
-  { name: "Aakash Verma", room: "R-312", amount: "₹9,000", status: "pending", time: "Due Jun 10" },
-  { name: "Sneha Patel", room: "R-108", amount: "₹7,500", status: "paid", time: "Jun 3" },
-  { name: "Karan Singh", room: "R-207", amount: "₹8,000", status: "overdue", time: "Due Jun 1" },
+  {
+    name: "Rohit Sharma",
+    room: "R-201",
+    amount: "₹8,500",
+    status: "paid",
+    time: "2 min ago",
+  },
+  {
+    name: "Priya Mehta",
+    room: "R-105",
+    amount: "₹7,200",
+    status: "paid",
+    time: "1 hr ago",
+  },
+  {
+    name: "Aakash Verma",
+    room: "R-312",
+    amount: "₹9,000",
+    status: "pending",
+    time: "Due Jun 10",
+  },
+  {
+    name: "Sneha Patel",
+    room: "R-108",
+    amount: "₹7,500",
+    status: "paid",
+    time: "Jun 3",
+  },
+  {
+    name: "Karan Singh",
+    room: "R-207",
+    amount: "₹8,000",
+    status: "overdue",
+    time: "Due Jun 1",
+  },
 ];
 
 const quickActions = [
@@ -94,14 +127,15 @@ const quickActions = [
 
 const statusStyles: Record<string, string> = {
   paid: "bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400",
-  pending: "bg-amber-50 text-amber-600 dark:bg-amber-950/40 dark:text-amber-400",
+  pending:
+    "bg-amber-50 text-amber-600 dark:bg-amber-950/40 dark:text-amber-400",
   overdue: "bg-red-50 text-red-500 dark:bg-red-950/40 dark:text-red-400",
 };
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+
   return (
     <div className="max-w-6xl mx-auto space-y-8">
-
       {/* Page header */}
       <div className="flex items-start justify-between gap-4">
         <div>
@@ -109,10 +143,13 @@ export default function DashboardPage() {
             Good morning, Rahul 👋
           </h1>
           <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
-            Here is  what happening at Gupta Hostels today.
+            Here is what happening at Gupta Hostels today.
           </p>
         </div>
-        <Button size="sm" className="shrink-0 gap-1.5 bg-zinc-900 hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-100">
+        <Button
+          size="sm"
+          className="shrink-0 gap-1.5 bg-zinc-900 hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-100"
+        >
           <Plus className="w-3.5 h-3.5" />
           Run Auto-Billing
         </Button>
@@ -129,7 +166,6 @@ export default function DashboardPage() {
 
       {/* Quick actions + Recent payments */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
         {/* Quick actions */}
         <div className="lg:col-span-1">
           <h2 className="text-sm font-semibold text-zinc-900 dark:text-white mb-3">
@@ -245,7 +281,6 @@ export default function DashboardPage() {
           </Button>
         </Link>
       </div>
-
     </div>
   );
 }

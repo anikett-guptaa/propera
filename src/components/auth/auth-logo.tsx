@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Home } from "lucide-react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface AuthLogoProps {
@@ -15,10 +15,14 @@ export function AuthLogo({ className }: AuthLogoProps) {
         className
       )}
     >
-      <div className="w-8 h-8 bg-zinc-900 dark:bg-white rounded-lg flex items-center justify-center shrink-0 transition-transform group-hover:scale-95">
-        <Home className="w-4 h-4 text-white dark:text-zinc-900" />
-      </div>
-      <span className="text-[15px] font-semibold tracking-tight text-zinc-900 dark:text-white">
+      <Image
+        src="/icon.png"
+        alt="Propera"
+        width={32}
+        height={32}
+        className="h-8 w-8 object-contain transition-transform group-hover:scale-95"
+      />
+      <span className="text-[15px] font-semibold tracking-tight text-ink-950 dark:text-white">
         Propera
       </span>
     </Link>
