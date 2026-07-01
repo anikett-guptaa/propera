@@ -18,6 +18,7 @@ import { OnboardingStepper } from "@/components/onboarding/onboarding-stepper";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Building2, Sparkles } from "lucide-react";
+import { createOrganization } from "@/actions/organization";
 
 function generateSlug(name: string): string {
   return name
@@ -58,11 +59,15 @@ export default function OnboardingPage() {
     }
   }, [nameValue, dirtyFields.slug, setValue]);
 
-  async function onSubmit(_data: OrganizationInput) {
-    // TODO: Replace with real API call — createOrganization(data)
-    await new Promise((resolve) => setTimeout(resolve, 800));
+  async function onSubmit(data: OrganizationInput) {
+  try {
+    await createOrganization(data);
+
     router.push("/onboarding/property");
+  } catch (error) {
+    console.error(error);
   }
+}
 
   return (
     <AuthLayout>

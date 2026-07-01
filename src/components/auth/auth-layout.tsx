@@ -6,9 +6,9 @@ interface AuthLayoutProps {
 
 export function AuthLayout({ children }: AuthLayoutProps) {
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 flex flex-col">
+    <div className="min-h-screen bg-zinc-50 dark:bg-ink-950 flex flex-col transition-colors duration-300">
       {/* Top bar */}
-      <header className="h-14 flex items-center px-6 border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
+      <header className="h-14 flex items-center px-6 border-b border-zinc-200 dark:border-white/[0.08] bg-white dark:bg-ink-900">
         <AuthLogo />
       </header>
 
@@ -20,7 +20,7 @@ export function AuthLayout({ children }: AuthLayoutProps) {
       {/* Bottom */}
       <footer className="py-5 text-center">
         <p className="text-xs text-zinc-400 dark:text-zinc-600">
-          © {new Date().getFullYear()} Propera. All rights reserved.
+          {new Date().getFullYear()} Propera. All rights reserved.
         </p>
       </footer>
     </div>

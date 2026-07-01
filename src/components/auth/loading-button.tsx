@@ -20,7 +20,12 @@ export function LoadingButton({
     <Button
       {...props}
       disabled={disabled || loading}
-      className={cn("w-full relative", className)}
+      className={cn(
+        "w-full relative",
+        "bg-ink-950 hover:bg-violet-700 text-white",
+        "dark:bg-white dark:text-ink-950 dark:hover:bg-violet-100",
+        className
+      )}
     >
       {loading && (
         <Loader2 className="w-4 h-4 animate-spin absolute left-1/2 -translate-x-1/2" />

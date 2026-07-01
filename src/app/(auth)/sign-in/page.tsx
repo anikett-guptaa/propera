@@ -34,18 +34,15 @@ export default function SignInPage() {
 
   async function onSubmit(data: SignInInput) {
     setAuthError(null);
-
     const { error } = await authClient.signIn.email({
       email: data.email,
       password: data.password,
       callbackURL: "/dashboard",
     });
-
     if (error) {
       setAuthError(error.message ?? "Something went wrong. Please try again.");
       return;
     }
-
     router.push("/dashboard");
   }
 
@@ -69,10 +66,10 @@ export default function SignInPage() {
         {/* Divider */}
         <div className="relative my-5">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-zinc-200 dark:border-zinc-800" />
+            <div className="w-full border-t border-zinc-200 dark:border-white/[0.08]" />
           </div>
           <div className="relative flex justify-center">
-            <span className="bg-white dark:bg-zinc-900 px-3 text-xs text-zinc-400 dark:text-zinc-500">
+            <span className="bg-white dark:bg-ink-900 px-3 text-xs text-zinc-400 dark:text-zinc-500">
               or continue with email
             </span>
           </div>
@@ -88,7 +85,7 @@ export default function SignInPage() {
         <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
           {/* Email */}
           <div className="space-y-1.5">
-            <Label htmlFor="email" className="text-sm font-medium">
+            <Label htmlFor="email" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
               Email
             </Label>
             <Input
@@ -115,7 +112,7 @@ export default function SignInPage() {
           {/* Password */}
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
-              <Label htmlFor="password" className="text-sm font-medium">
+              <Label htmlFor="password" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
                 Password
               </Label>
               <Link
@@ -145,11 +142,7 @@ export default function SignInPage() {
             )}
           </div>
 
-          <LoadingButton
-            type="submit"
-            loading={isSubmitting}
-            className="w-full mt-2 bg-zinc-900 hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-100"
-          >
+          <LoadingButton type="submit" loading={isSubmitting} className="mt-2">
             Sign in
           </LoadingButton>
         </form>
