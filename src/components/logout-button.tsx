@@ -7,18 +7,23 @@ export function LogoutButton() {
   const router = useRouter();
 
   async function handleLogout() {
-    await authClient.signOut();
+    const { error } = await authClient.signOut();
 
-    router.replace("/sign-in");
-    router.refresh();
+    if (error) {
+      console.error("Logout failed:", error);
+      return;
+    }
+
+    router.replace("/");
+    
   }
 
   return (
     <button
       onClick={handleLogout}
-      className="mt-5 rounded bg-red-600 px-4 py-2 text-white"
+      className="mt-5 rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-red-700"
     >
-      Logout
+      Sign Out
     </button>
   );
 }

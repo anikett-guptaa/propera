@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -19,8 +18,62 @@ model User {
   sessions      Session[]
   accounts      Account[]
 
+  organizations Organization[]
+
   @@unique([email])
   @@map("user")
+}
+
+model Organization {
+  id      String @id @default(cuid())
+  name    String
+  type    String
+  ownerId String
+  slug String @unique
+  owner   User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  properties Property[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([ownerId])
+}
+
+model Property {
+  id   String @id @default(cuid())
+  name String
+  type String
+
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  rooms Room[]
+
+  @@index([organizationId])
+}
+
+model Room {
+  id String @id @default(cuid())
+
+  roomNumber String
+
+  floor Int?
+
+  capacity Int
+
+  rent Decimal @db.Decimal(10, 2)
+
+  propertyId String
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([propertyId])
 }
 
 model Session {
