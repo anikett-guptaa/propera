@@ -33,6 +33,7 @@ model Organization {
   owner   User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
 
   properties Property[]
+  onboardingStep Int @default(1)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -41,19 +42,27 @@ model Organization {
 }
 
 model Property {
-  id   String @id @default(cuid())
-  name String
-  type String
+  id             String   @id @default(cuid())
+
+  name           String
+  type           String
+
+  addressLine    String
+  city           String
+  state          String
+  pincode        String
+  country        String
+
+  floors         Int
+  description    String?
 
   organizationId String
   organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  rooms          Room[]
 
-  rooms Room[]
-
-  @@index([organizationId])
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }
 
 model Room {

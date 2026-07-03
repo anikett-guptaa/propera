@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { Resolver } from "react-hook-form";
+import { createProperty } from "@/actions/property";
 import {
   Building2,
   Users,
@@ -106,11 +107,25 @@ export default function OnboardingPropertyPage() {
     },
   });
 
-  async function onSubmit(_data: PropertyInput): Promise<void> {
-    // API call — createProperty(data)
-    await new Promise((resolve) => setTimeout(resolve, 800));
+  async function onSubmit(data: PropertyInput): Promise<void> {
+  try {
+    await createProperty({
+      name: data.name,
+      type: data.type,
+      addressLine: data.addressLine,
+      city: data.city,
+      state: data.state,
+      pincode: data.pincode,
+      country: data.country,
+      floors: Number(data.floors),
+      description: data.description,
+    });
+
     router.push("/onboarding/rooms");
+  } catch (error) {
+    console.error(error);
   }
+}
 
   return (
     <AuthLayout>
