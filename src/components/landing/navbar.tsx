@@ -5,10 +5,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import Image from "next/image";
+import Link from "next/link";
 
 interface NavLink {
   label: string;
   href: string;
+}
+
+interface NavbarProps {
+  isLoggedIn: boolean;
 }
 
 const navLinks: NavLink[] = [
@@ -18,7 +23,7 @@ const navLinks: NavLink[] = [
   { label: "FAQ", href: "#faq" },
 ];
 
-export function Navbar() {
+export function Navbar({ isLoggedIn }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -41,7 +46,7 @@ export function Navbar() {
             : "border border-transparent bg-transparent"
         }`}
       >
-        <a href="#" className="flex items-center gap-2">
+        <Link href={isLoggedIn ? "/auth/redirect" : "/"} className="flex items-center gap-2">
           <Image
             src="/icon.png"
             alt="Propera"
@@ -52,35 +57,48 @@ export function Navbar() {
           <span className="text-[15px] font-semibold tracking-tight text-ink-950 dark:text-white">
             Propera
           </span>
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-7 md:flex">
           {navLinks.map((link) => (
-            <a
+           <Link
               key={link.href}
               href={link.href}
               className="text-sm text-zinc-500 transition-colors hover:text-ink-950 dark:text-zinc-400 dark:hover:text-white"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">
           <ThemeToggle />
-          <a
-            href="#"
-            className="rounded-lg px-3.5 py-1.5 text-sm font-medium text-zinc-600 transition-colors hover:text-ink-950 dark:text-zinc-400 dark:hover:text-white"
-          >
-            Sign in
-          </a>
-          <a
-            href="#"
-            className="group flex items-center gap-1.5 rounded-lg bg-ink-950 px-3.5 py-1.5 text-sm font-medium text-white transition-all hover:bg-violet-700 dark:bg-white dark:text-ink-950 dark:hover:bg-violet-100"
-          >
-            Get started
-            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-          </a>
+          {isLoggedIn ? (
+            <Link
+              href="/auth/redirect"
+              className="group flex items-center gap-1.5 rounded-lg bg-ink-950 px-3.5 py-1.5 text-sm font-medium text-white transition-all hover:bg-violet-700 dark:bg-white dark:text-ink-950 dark:hover:bg-violet-100"
+            >
+              Dashboard
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+          ) : (
+            <>
+              <Link
+                href="/sign-in"
+                className="rounded-lg px-3.5 py-1.5 text-sm font-medium text-zinc-600 transition-colors hover:text-ink-950 dark:text-zinc-400 dark:hover:text-white"
+              >
+                Sign in
+              </Link>
+
+              <Link
+                href="/sign-up"
+                className="group flex items-center gap-1.5 rounded-lg bg-ink-950 px-3.5 py-1.5 text-sm font-medium text-white transition-all hover:bg-violet-700 dark:bg-white dark:text-ink-950 dark:hover:bg-violet-100"
+              >
+                Get started
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+            </>
+          )}
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
@@ -91,7 +109,11 @@ export function Navbar() {
             className="flex h-8 w-8 items-center justify-center rounded-lg text-zinc-600 dark:text-zinc-300"
             aria-label="Toggle menu"
           >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {mobileOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
           </button>
         </div>
       </motion.div>
@@ -118,18 +140,33 @@ export function Navbar() {
               ))}
             </nav>
             <div className="mt-3 flex flex-col gap-2 border-t border-black/[0.06] pt-3 dark:border-white/10">
-              <a
-                href="#"
-                className="rounded-lg px-3 py-2.5 text-center text-sm font-medium text-zinc-600 hover:bg-zinc-50 dark:text-zinc-400 dark:hover:bg-white/5"
-              >
-                Sign in
-              </a>
-              <a
-                href="#"
-                className="rounded-lg bg-ink-950 px-3 py-2.5 text-center text-sm font-medium text-white dark:bg-white dark:text-ink-950"
-              >
-                Get started
-              </a>
+              {isLoggedIn ? (
+                <Link
+                  href="/auth/redirect"
+                  onClick={() => setMobileOpen(false)}
+                  className="rounded-lg bg-ink-950 px-3 py-2.5 text-center text-sm font-medium text-white dark:bg-white dark:text-ink-950"
+                >
+                  Dashboard
+                </Link>
+              ) : (
+                <>
+                  <Link
+                    href="/sign-in"
+                    onClick={() => setMobileOpen(false)}
+                    className="rounded-lg px-3 py-2.5 text-center text-sm font-medium text-zinc-600 hover:bg-zinc-50 dark:text-zinc-400 dark:hover:bg-white/5"
+                  >
+                    Sign in
+                  </Link>
+
+                  <Link
+                    href="/sign-up"
+                    onClick={() => setMobileOpen(false)}
+                    className="rounded-lg bg-ink-950 px-3 py-2.5 text-center text-sm font-medium text-white dark:bg-white dark:text-ink-950"
+                  >
+                    Get started
+                  </Link>
+                </>
+              )}
             </div>
           </motion.div>
         )}

@@ -37,19 +37,19 @@ export default function SignInPage() {
     const { error } = await authClient.signIn.email({
       email: data.email,
       password: data.password,
-      callbackURL: "/dashboard",
+      callbackURL: "/auth/redirect",
     });
     if (error) {
       setAuthError(error.message ?? "Something went wrong. Please try again.");
       return;
     }
-    router.push("/dashboard");
+    router.push("/auth/redirect");
   }
 
   async function handleGoogleLogin() {
     await authClient.signIn.social({
       provider: "google",
-      callbackURL: "/dashboard",
+      callbackURL: "/auth/redirect",
     });
   }
 

@@ -11,12 +11,14 @@ import { Faq } from "@/components/landing/faq";
 import { Cta } from "@/components/landing/cta";
 import { Footer } from "@/components/landing/footer";
 import { BackgroundGrid } from "@/components/landing/background-grid";
+import { getSession } from "@/lib/session";
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  const session = await getSession();
   return (
     <main className="relative min-h-screen bg-[#fdfcff] dark:bg-ink-950">
       <BackgroundGrid />
-      <Navbar />
+      <Navbar isLoggedIn={!!session} />
       <Hero />
       <TrustedBy />
       <Features />
