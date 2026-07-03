@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import type { Resolver } from "react-hook-form";
 import { DoorOpen, Wand2, ClipboardList } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { createRooms } from "@/actions/rooms";
 
 import {
   roomsFormSchema,
@@ -57,8 +58,7 @@ function RoomPreview({
       </div>
       <div className="space-y-2">
         {Array.from({ length: previewFloors }).map((_, floorIndex) => {
-          const floorNumber = validFloors - floorIndex;
-          const floorStart = validStart + floorIndex * validRooms;
+          const floorNumber = floorIndex + 1;
           return (
             <div key={floorIndex} className="flex items-center gap-2">
               <span className="text-[10px] font-medium text-zinc-400 dark:text-zinc-500 w-12 shrink-0">
@@ -72,7 +72,7 @@ function RoomPreview({
                       className="w-9 h-6 rounded-md bg-white dark:bg-zinc-700 border border-zinc-200 dark:border-zinc-600 flex items-center justify-center"
                     >
                       <span className="text-[9px] font-semibold text-zinc-600 dark:text-zinc-300">
-                        {floorStart + roomIndex}
+                        {floorNumber * 100 + roomIndex + 1}
                       </span>
                     </div>
                   )
@@ -202,11 +202,19 @@ export default function OnboardingRoomsPage() {
   const roomsPerFloor = Number(watched.roomsPerFloor) || 0;
   const startNumber = Number(watched.startNumber) || 101;
 
-  async function onSubmit(_data: RoomsFormInput): Promise<void> {
-    // API call createrooms
-    await new Promise((resolve) => setTimeout(resolve, 800));
+  async function onSubmit(data: RoomsFormInput): Promise<void> {
+  try {
+    await createRooms({
+      mode: data.mode,
+      floors: data.floors,
+      roomsPerFloor: data.roomsPerFloor,
+    });
+
     router.push("/dashboard");
+  } catch (error) {
+    console.error(error);
   }
+}
 
   return (
     <AuthLayout>

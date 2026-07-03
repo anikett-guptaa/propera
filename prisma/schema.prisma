@@ -69,12 +69,7 @@ model Room {
   id String @id @default(cuid())
 
   roomNumber String
-
-  floor Int?
-
-  capacity Int
-
-  rent Decimal @db.Decimal(10, 2)
+  floor      Int
 
   propertyId String
   property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
@@ -83,7 +78,9 @@ model Room {
   updatedAt DateTime @updatedAt
 
   @@index([propertyId])
+  @@unique([propertyId, roomNumber])
 }
+
 
 model Session {
   id        String   @id
