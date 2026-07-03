@@ -47,7 +47,7 @@ const previewCards = [
 
 export function DashboardPreview() {
   return (
-    <section className="relative px-4 py-28 sm:py-36">
+    <section id="dashboard-preview" className="relative px-4 py-28 sm:py-36">
       <SectionHeading
         eyebrow="Inside Propera"
         title="A dashboard that answers questions before you ask them"

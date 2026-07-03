@@ -1,10 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, PlayCircle, Wallet, Users, AlertCircle } from "lucide-react";
+import {
+  ArrowRight,
+  PlayCircle,
+  Wallet,
+  Users,
+  AlertCircle,
+} from "lucide-react";
 import { AnimatedGradient } from "./animated-gradient";
 import { HeroAnimation } from "./hero-animation";
 import { FloatingCard } from "./floating-card";
+import Link from "next/link";
 
 interface Stat {
   value: string;
@@ -17,7 +24,11 @@ const stats: Stat[] = [
   { value: "98.2%", label: "On-time collection rate" },
 ];
 
-export function Hero() {
+interface HeroProps {
+  isLoggedIn: boolean;
+}
+
+export function Hero({ isLoggedIn }: HeroProps) {
   return (
     <section className="relative overflow-hidden px-4 pb-32 pt-40 sm:pt-48">
       <AnimatedGradient className="left-1/2 top-0 -translate-x-1/2" />
@@ -70,20 +81,20 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row"
         >
-          <a
-            href="#"
+          <Link
+            href={isLoggedIn ? "/auth/redirect" : "/sign-up"}
             className="group flex w-full items-center justify-center gap-2 rounded-xl bg-ink-950 px-6 py-3 text-sm font-medium text-white transition-all hover:bg-violet-700 dark:bg-white dark:text-ink-950 dark:hover:bg-violet-100 sm:w-auto"
           >
-            Start free trial
+            {isLoggedIn ? "Open Dashboard" : "Start free trial"}
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            href="#dashboard-preview"
             className="flex w-full items-center justify-center gap-2 rounded-xl border border-black/[0.08] bg-white px-6 py-3 text-sm font-medium text-zinc-700 shadow-sm transition-colors hover:bg-zinc-50 dark:border-white/10 dark:bg-white/5 dark:text-zinc-200 dark:hover:bg-white/10 sm:w-auto"
           >
             <PlayCircle className="h-4 w-4" />
             Watch product tour
-          </a>
+          </Link>
         </motion.div>
 
         <motion.div
@@ -97,7 +108,9 @@ export function Hero() {
               <p className="font-mono text-xl font-semibold text-ink-950 dark:text-white">
                 {s.value}
               </p>
-              <p className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">{s.label}</p>
+              <p className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">
+                {s.label}
+              </p>
             </div>
           ))}
         </motion.div>

@@ -19,7 +19,7 @@ export default async function LandingPage() {
     <main className="relative min-h-screen bg-[#fdfcff] dark:bg-ink-950">
       <BackgroundGrid />
       <Navbar isLoggedIn={!!session} />
-      <Hero />
+      <Hero isLoggedIn={!!session}/>
       <TrustedBy />
       <Features />
       <DashboardPreview />
